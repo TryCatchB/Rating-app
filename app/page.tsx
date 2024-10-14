@@ -2,6 +2,7 @@ import Image from "next/image";
 import styles from "./page.module.css";
 
 export default function Home() {
+  const a: number = 30;
   return (
     <div className={styles.page}>
       <main className={styles.main}>
@@ -14,9 +15,7 @@ export default function Home() {
           priority
         />
         <ol>
-          <li>
-            Get started by editing <code>app/page.tsx</code>.
-          </li>
+          <li>{a}</li>
           <li>Save and see your changes instantly.</li>
         </ol>
 
