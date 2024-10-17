@@ -1,0 +1,19 @@
+.h1 {
+  font-size: 26px;
+  line-height: 35px;
+}
+
+.h2 {
+  font-size: 22px;
+  line-height: 30px;
+}
+
+.h3 {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 27px;
+}
+
+:is(.h1, .h2) {
+  font-weight: 500;
+}
