@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { HtagProps } from './Htag.props';
 import styles from './Htag.module.css';
 
-const Htag = ({ tag, children }: HtagProps): JSX.Element => {
+const Htag: FC<HtagProps> = ({ tag, children }): JSX.Element => {
   const tags = {
     h1: <h1 className={styles.h1}>{children}</h1>,
     h2: <h2 className={styles.h2}>{children}</h2>,
