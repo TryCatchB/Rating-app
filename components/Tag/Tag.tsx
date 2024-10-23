@@ -10,7 +10,7 @@ const Tag: FC<TagProps> = ({
   color = 'ghost',
   ...props
 }): JSX.Element => {
-  const classes = {
+  const classes = cn(styles.tag, {
     [styles.small]: size == 'small',
     [styles.medium]: size == 'medium',
     [styles.ghost]: color == 'ghost',
@@ -18,9 +18,10 @@ const Tag: FC<TagProps> = ({
     [styles.grey]: color == 'grey',
     [styles.green]: color == 'green',
     [styles.primary]: color == 'primary',
-  };
+  });
+
   return (
-    <div className={cn(styles.tag, classes)} {...props}>
+    <div className={classes} {...props}>
       {href ? <a href={href}>{children}</a> : <>{children}</>}
     </div>
   );

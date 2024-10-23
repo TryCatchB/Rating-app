@@ -1,13 +1,18 @@
-import { FC } from 'react';
+'use client';
+
+import { FC, useState } from 'react';
 import Button from '@/components/Button/Button';
 import Htag from '@/components/Htag/Htag';
 import TagP from '@/components/TagP/TagP';
 import Tag from '@/components/Tag/Tag';
+import Rating from '@/components/Rating/Rating';
 
 const Home: FC = (): JSX.Element => {
+  const [rating, setRating] = useState<number>(4);
+
   return (
     <div>
-      <Htag tag="h1">Title</Htag>
+      <Htag tag="h1">Text</Htag>
       <Button appearance="primary" arrow="right">
         Button
       </Button>
@@ -29,6 +34,7 @@ const Home: FC = (): JSX.Element => {
       </Tag>
       <Tag color="primary">m</Tag>
       <Tag color="green">m</Tag>
+      <Rating rating={rating} isEditable={true} setRating={setRating} />
     </div>
   );
 };

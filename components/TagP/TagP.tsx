@@ -8,14 +8,14 @@ const TagP: FC<PtagProps> = ({
   children,
   ...props
 }): JSX.Element => {
-  const fonts = {
+  const fonts = cn(styles.text, {
     [styles.small]: size == 'small',
     [styles.medium]: size == 'medium',
     [styles.large]: size == 'large',
-  };
+  });
 
   return (
-    <p className={cn(styles.text, fonts)} {...props}>
+    <p className={fonts} {...props}>
       {children}
     </p>
   );

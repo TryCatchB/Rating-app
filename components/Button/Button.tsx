@@ -16,6 +16,7 @@ const Button: FC<ButtonProps> = ({
     [styles.ghost]: appearance == 'ghost',
     [styles.primary]: appearance == 'primary',
   };
+
   return (
     <button className={cn(styles.button, classes)} {...props}>
       {children}
