@@ -1,10 +1,8 @@
 'use client';
 
-import React, { FC, useEffect, useState, KeyboardEvent } from 'react';
-import cn from 'classnames';
+import React, { FC, KeyboardEvent, useState } from 'react';
 import { RatingProps } from './Rating.props';
-import StarIcon from './star.svg';
-import styles from './Rating.module.css';
+import useRating from './hooks/useRating';
 
 const Rating: FC<RatingProps> = ({
   isEditable = false,
@@ -12,60 +10,46 @@ const Rating: FC<RatingProps> = ({
   setRating,
   ...props
 }): JSX.Element => {
-  const [ratingArray, setRatingArray] = useState<JSX.Element[]>(
-    new Array(5).fill(<></>),
-  );
-
-  useEffect(() => {
-    constructRating(rating);
-  }, [rating]);
-
-  const constructRating = (currentRating: number) => {
-    const updatedArray = ratingArray.map((r: JSX.Element, i: number) => {
-      const combinedStyles = cn(styles.star, {
-        [styles.filled]: i < currentRating,
-        [styles.editable]: isEditable,
-      });
-
-      return (
-        <span
-          key={i}
-          className={combinedStyles}
-          onMouseEnter={() => changeDisplay(i + 1)}
-          onMouseLeave={() => changeDisplay(rating)}
-          onClick={() => onClick(i + 1)}
-        >
-          <StarIcon
-            tabIndex={isEditable ? 0 : -1}
-            onKeyDown={(e: KeyboardEvent<SVGAElement>) =>
-              isEditable && handleSpace(i + 1, e)
-            }
-          />
-        </span>
-      );
-    });
-    setRatingArray(updatedArray);
-  };
+  const [displayRating, setDisplayRating] = useState<number>(rating);
 
   const changeDisplay = (i: number) => {
     if (!isEditable) return;
-    constructRating(i);
+    setDisplayRating(i);
   };
 
-  const onClick = (i: number) => {
-    if (!isEditable || !setRating) return;
-    setRating(i);
+  const resetDisplay = () => {
+    if (!isEditable) return;
+    setDisplayRating(rating);
+  };
+
+  const handleClick = (i: number) => {
+    if (isEditable && setRating) {
+      setRating(i);
+    }
   };
 
   const handleSpace = (i: number, e: KeyboardEvent<SVGAElement>) => {
-    if (e.code != 'Space' || !setRating) return;
-    setRating(i);
+    if (e.code === 'Space' && setRating) {
+      setRating(i);
+      setDisplayRating(i);
+    }
   };
+
+  const data = {
+    displayRating,
+    isEditable,
+    changeDisplay,
+    resetDisplay,
+    handleClick,
+    handleSpace,
+  };
+
+  const ratingArray = useRating(data);
 
   return (
     <div {...props}>
-      {ratingArray.map((r, i) => (
-        <span key={i}>{r}</span>
+      {ratingArray.map((star, i) => (
+        <span key={i}>{star}</span>
       ))}
     </div>
   );
