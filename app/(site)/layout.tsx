@@ -1,4 +1,7 @@
 import type { Metadata } from 'next';
+import Header from '@/components/Header/Header';
+import Sidebar from '@/components/Sidebar/Sidebar';
+import Footer from '@/components/Footer/Footer';
 import { Noto_Sans } from 'next/font/google';
 import './globals.css';
 
@@ -16,7 +19,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ru">
-      <body className={`${notoSans.className}`}>{children}</body>
+      <body className={`${notoSans.className}`}>
+        <Header />
+        <div>
+          <Sidebar />
+          <div>{children}</div>
+        </div>
+        <Footer />
+      </body>
     </html>
   );
 }
