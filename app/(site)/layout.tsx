@@ -20,12 +20,14 @@ export default function RootLayout({
   return (
     <html lang="ru">
       <body className={`${notoSans.className}`}>
-        <Header />
-        <div>
+        <div className="wrapper">
+          <Header />
           <Sidebar />
-          <div>{children}</div>
+          <div className="body">
+            <div>{children}</div>
+          </div>
+          <Footer />
         </div>
-        <Footer />
       </body>
     </html>
   );
