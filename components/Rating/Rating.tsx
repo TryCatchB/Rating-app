@@ -1,8 +1,8 @@
 'use client';
 
 import React, { FC, KeyboardEvent, useState } from 'react';
-import { RatingProps } from './Rating.props';
 import useRating from './hooks/useRating';
+import { RatingProps } from './Rating.props';
 
 const Rating: FC<RatingProps> = ({
   isEditable = false,
