@@ -3,6 +3,7 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getPage } from '@/api/page';
 import { getMenu } from '@/api/menu';
+import { getProducts } from '@/api/product';
 
 export const metadata: Metadata = {
   title: 'Products Page',
@@ -17,13 +18,14 @@ export async function generateStaticParams() {
 }
 
 const Courses = async ({ params }: { params: { alias: string } }) => {
-  const page = await getPage(params.alias);
-
-  if (!page) {
+  if (!params) {
     notFound();
   }
 
-  return <div>Product {page.title}</div>;
+  const page = await getPage(params.alias);
+  const products = await getProducts(page?.category);
+
+  return <div>Products {products && products.length}</div>;
 };
 
 export default Courses;
