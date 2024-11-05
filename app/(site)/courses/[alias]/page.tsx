@@ -18,12 +18,19 @@ export async function generateStaticParams() {
 }
 
 const Courses = async ({ params }: { params: { alias: string } }) => {
-  if (!params) {
+  if (!params?.alias) {
     notFound();
   }
 
   const page = await getPage(params.alias);
-  const products = await getProducts(page?.category);
+  if (!page) {
+    notFound();
+  }
+
+  const products = await getProducts(page.category);
+  if (!products || products.length === 0) {
+    return <div>No products found for this category.</div>;
+  }
 
   return <div>Products {products && products.length}</div>;
 };

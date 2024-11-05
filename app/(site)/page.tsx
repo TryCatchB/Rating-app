@@ -1,13 +1,10 @@
 import { FC } from 'react';
-import { getMenu } from '@/api/menu';
 import Button from '@/components/Button/Button';
 import Htag from '@/components/Htag/Htag';
 import Tag from '@/components/Tag/Tag';
 import TagP from '@/components/TagP/TagP';
 
-const Home: FC = async () => {
-  const menu = await getMenu(0);
-
+const Home: FC = (): JSX.Element => {
   return (
     <>
       <Htag tag="h1">Text</Htag>
@@ -33,11 +30,6 @@ const Home: FC = async () => {
       <Tag color="primary">m</Tag>
       <Tag color="green">m</Tag>
       {/* <Rating rating={rating} isEditable={true} setRating={setRating} /> */}
-      <ul>
-        {menu.map((m) => (
-          <li key={m._id.secondCategory}>{m._id.secondCategory}</li>
-        ))}
-      </ul>
     </>
   );
 };
