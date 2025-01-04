@@ -3,8 +3,11 @@ import Button from '@/components/Button/Button';
 import Htag from '@/components/Htag/Htag';
 import Tag from '@/components/Tag/Tag';
 import TagP from '@/components/TagP/TagP';
+// import Rating from '@/components/Rating/Rating';
 
 const Home: FC = (): JSX.Element => {
+  // const [rating, setRating] = useState(0);
+
   return (
     <>
       <Htag tag="h1">Text</Htag>
