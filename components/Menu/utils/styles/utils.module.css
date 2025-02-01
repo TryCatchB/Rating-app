@@ -28,8 +28,16 @@
   border-left: 1px solid #dfdfdf;
 }
 
-.secondLevelBlockOpened:last-child {
-  margin-bottom: 20px;
+.secondLevelBlock {
+  display: none;
+}
+
+.secondLevelBlockOpened {
+  display: block;
+
+  &:last-child {
+    margin-bottom: 20px;
+  }
 }
 
 .secondLevel {
@@ -54,4 +62,8 @@
 :is(.secondLevel, .thirdLevel) {
   cursor: pointer;
   color: var(--gray-dark);
+}
+
+.thirdLevelActive {
+  color: var(--primary);
 }
