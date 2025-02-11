@@ -2,7 +2,7 @@ import Link from 'next/link';
 import cn from 'classnames';
 import styles from './styles/utils.module.css';
 import SecondLevel from './SecondLevel';
-import { firstLevelMenu } from '../levelMenu/firstLevelMenu';
+import { firstLevelMenu } from '../../../helpers/levelMenu/firstLevelMenu';
 
 interface FirstLevelProps {
   pathName: string;
